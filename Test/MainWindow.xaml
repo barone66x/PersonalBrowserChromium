@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+
+    <Grid x:Name="test">
+        <ComboBox Height="20" Margin="303,162,340,252" Background="Red" BorderBrush="Red" Foreground="Red" IsEditable="True">
+            <ComboBox.Template>
+                <ControlTemplate TargetType="ComboBox">
+                    <Border Background="#FF2A2ADE" BorderBrush="#FF4C3636" BorderThickness="1" CornerRadius="5">
+                        
+                    </Border>
+                    
+                </ControlTemplate>
+            </ComboBox.Template>
+        </ComboBox>
+
     </Grid>
 </Window>

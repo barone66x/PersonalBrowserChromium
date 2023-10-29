@@ -13,16 +13,12 @@ namespace PersonalBrowserChromium.Services
 {
     public static class UtilitiesClass
     {
-        public static void  test (object sender, DependencyPropertyChangedEventArgs e)
-        {
-            Debug.WriteLine("è entrato");
-
-        }
+      
         public static void NewPage(TabControl Tabs)
         {
             ChromiumWebBrowser newBrowser = new ChromiumWebBrowser();
-            newBrowser.AddressChanged += test;
-            newBrowser.LoadUrl("https://www.google.com");   //cambiare con homepage letta da file
+           
+            newBrowser.LoadUrl(FileInputOutput.GetHomePage());   
             TabItem newTab = new TabItem();
             newTab.Header = "Nuova Scheda";
             newTab.Content = newBrowser;
@@ -37,19 +33,20 @@ namespace PersonalBrowserChromium.Services
         }
 
         public static void SearchSite(TabControl Tabs, string url)
-        {
-            ChromiumWebBrowser newBrowser = new ChromiumWebBrowser();
+        {  
+            var currentTab = Tabs.SelectedContent as ChromiumWebBrowser; //dico esplicitamente che il contenuto della tab sarà un ChromiumWebBrowser
             var checkedUrl = CheckUrl(url);
-            newBrowser.LoadUrl(checkedUrl);
-            TabItem newTab = new TabItem();
-            newTab.Content = newBrowser;
-            newTab.Header = "Nuova Scheda";
+            currentTab.LoadUrl(checkedUrl);
+
+            //TabItem newTab = new TabItem();
+            //newTab.Content = newBrowser;
+            //newTab.Header = "Nuova Scheda";
 
             // var header    = GetHeader(currentBrowser);
             //header.ContinueWith(h => { newTab.Header = (h.Result); });
 
-            Tabs.Items.Add(newTab);
-            GoToLastTab(Tabs);
+            //Tabs.Items.Add(newTab);
+            //GoToLastTab(Tabs);
         }
 
         public static string CheckUrl(string url)
